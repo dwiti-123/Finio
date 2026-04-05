@@ -1,20 +1,34 @@
-import AppLayout from "@/components/layout/ApplAyout";
+import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { RoleProvider } from "@/context/RoleContext";
+import { TransactionProvider } from "@/context/TransactionContext";
+import AppLayout from "@/components/layout/ApplAyout";
+import { Toaster } from "sonner";
+import { BudgetProvider } from "@/context/BudgetContext";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
+export const metadata: Metadata = {
+  title: "Finio",
+  description: "Personal Finance Dashboard",
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <AppLayout>{children}</AppLayout>
+        <ThemeProvider>
+          <RoleProvider>
+            <TransactionProvider>
+              <BudgetProvider>
+              <AppLayout>
+                {children}
+              </AppLayout>
+               <Toaster position="bottom-right" richColors />
+               </BudgetProvider>
+            </TransactionProvider>
+          </RoleProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FinanceIQ — Personal Finance Dashboard
 
-## Getting Started
+A clean, interactive finance dashboard built with Next.js 14, Tailwind CSS, shadcn/ui, and Recharts.
 
-First, run the development server:
+## Live Demo
+[Add your deployment URL here]
 
+## Setup
 ```bash
+git clone <your-repo-url>
+cd finance-dashboard
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Dashboard
+- Summary cards — Total Balance, Income, Expenses with % trend vs last month
+- Area chart — Balance and income trend over time
+- Donut chart — Spending breakdown by category
+- Recent transactions — Last 5 with relative timestamps
 
-## Learn More
+### Transactions
+- Full transaction table with date, description, category, type, amount
+- Unified filter bar — search, type filter, sort by date or amount
+- Pagination — 10 per page with page numbers
+- Export — Download filtered transactions as CSV or JSON
+- Admin only — Add, Edit, Delete transactions with confirm dialog
 
-To learn more about Next.js, take a look at the following resources:
+### Insights
+- Monthly savings with savings rate and contextual observation
+- Highest spending category with % of total expenses
+- Month-over-month expense change with smart messaging
+- Income vs expenses surplus/deficit card
+- Horizontal bar chart — spending ranked by category
+- Grouped bar chart — last 3 months income vs expenses comparison
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Global
+- Role switcher — Viewer (read-only) / Admin (full access) toggle in header
+- Dark / Light theme toggle — persisted in localStorage
+- Fully responsive — mobile drawer sidebar, stacked cards on small screens
+- localStorage persistence — transactions, role, and theme survive page refresh
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Decisions
 
-## Deploy on Vercel
+| Decision | Choice | Reason |
+|---|---|---|
+| Framework | Next.js 14 (App Router) | File-based routing, RSC support |
+| Styling | Tailwind CSS | Utility-first, fast iteration |
+| Components | shadcn/ui | Accessible, unstyled base, easy to customize |
+| Charts | Recharts | Composable, React-native, good defaults |
+| State | React Context + useReducer | Right fit for this scale — no external dependency needed |
+| Persistence | localStorage | Meets optional enhancement requirement cleanly |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
